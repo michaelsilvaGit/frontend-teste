@@ -19,6 +19,7 @@ A aplicação deve ser desenvolvida utilizando as seguintes tecnologias:
 
    - Exibir todos os clientes em uma tabela.
    - Apresentar informações relevantes, como: nome de usuário, e-mail, status (ativo / inativo) e data de criação.
+   - A tabela deve ser estilizada (de forma livre) e responsiva.
 
 2. **Visualização de Cliente**
 
@@ -29,11 +30,15 @@ A aplicação deve ser desenvolvida utilizando as seguintes tecnologias:
    - Permitir a edição das informações de um cliente.
    - Opção para alterar a senha do cliente.
    - Validar os dados antes do envio.
+   - Será um diferencial usar **react-hook-form**.
 
 4. **Exclusão de Cliente**
 
    - Implementar a funcionalidade para remover um cliente.
-   - Exibir uma mensagem de confirmação antes da exclusão.
+   - Exibir uma mensagem de confirmação antes da exclusão. Usar um modal ou popup estilizado.
+
+**Dica:**
+A estilização visual fica à sua escolha, mas damos preferência a algo não muito simples, use os recursos do Tailwind para deixar as telas com aparência moderna e fluida.
 
 ## Entrega
 
