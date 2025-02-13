@@ -1,0 +1,89 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model Client {
+    id        Int       @id @default(autoincrement())
+    avatar    String?   @db.VarChar(255)
+    username  String    @db.VarChar(255)
+    email     String    @db.VarChar(255)
+    password  String    @db.VarChar(255)
+    active    Boolean   @default(true)
+    createdAt DateTime  @default(now()) @map("created_at")
+    updatedAt DateTime? @updatedAt @map("updated_at")
+    deletedAt DateTime? @map("deleted_at")
+}
+
+// model Admin {
+//   id        Int       @id @default(autoincrement())
+//   avatar    String?   @db.VarChar(255)
+//   username  String    @db.VarChar(255)
+//   email     String    @db.VarChar(255)
+//   password  String    @db.VarChar(255)
+//   active    Boolean
+//   createdAt DateTime  @default(now()) @map("created_at")
+//   updatedAt DateTime? @updatedAt @map("updated_at")
+//   deletedAt DateTime? @map("deleted_at")
+// }
+
+// model Operator {
+//   id        String    @id @default(uuid()) @db.VarChar(36)
+//   name      String    @db.VarChar(255)
+//   createdAt DateTime  @default(now()) @map("created_at")
+//   updatedAt DateTime? @updatedAt @map("updated_at")
+//   deletedAt DateTime? @map("deleted_at")
+//   createdBy String    @db.VarChar(36)
+//   updatedBy String?   @db.VarChar(36)
+//   deletedBy String?   @db.VarChar(36)
+
+//   assignments Assignment[]
+// }
+
+// model Client {
+//   id         String     @id @default(uuid()) @db.VarChar(36)
+//   name       String     @db.VarChar(255)
+//   birth      DateTime?
+//   email      String?    @unique @db.VarChar(255)
+//   value      Decimal    @default(0.00) @db.Decimal(10, 2)
+//   isAssigned IsAssigned @default(PENDING)
+//   createdAt  DateTime   @default(now()) @map("created_at")
+//   updatedAt  DateTime?  @updatedAt @map("updated_at")
+//   deletedAt  DateTime?  @map("deleted_at")
+//   createdBy  String     @db.VarChar(36)
+//   updatedBy  String?    @db.VarChar(36)
+//   deletedBy  String?    @db.VarChar(36)
+
+//   assignments Assignment[]
+// }
+
+// model Assignment {
+//   id           String    @id @default(uuid()) @db.VarChar(36)
+//   operatorId   String    @db.VarChar(36)
+//   clientId     String    @db.VarChar(36)
+//   operatorName String?   @db.VarChar(150)
+//   clientName   String?   @db.VarChar(150)
+//   clientEmail  String?   @db.VarChar(255)
+//   createdAt    DateTime  @default(now()) @map("created_at")
+//   updatedAt    DateTime? @updatedAt @map("updated_at")
+//   deletedAt    DateTime? @map("deleted_at")
+//   createdBy    String    @db.VarChar(36)
+//   updatedBy    String?   @db.VarChar(36)
+//   deletedBy    String?   @db.VarChar(36)
+
+//   operator Operator @relation(fields: [operatorId], references: [id])
+//   client   Client   @relation(fields: [clientId], references: [id])
+
+//   @@unique([operatorId, clientId])
+// }
+
+// enum IsAssigned {
+//   PENDING
+//   IN_PROCESSING
+//   FINISH
+//   ERROR
+// }

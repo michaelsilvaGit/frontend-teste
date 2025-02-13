@@ -1,0 +1,22 @@
+services:
+  # redis:
+  #   container_name: sinka-redis
+  #   image: redis
+  #   ports:
+  #     - '6379:6379'
+  database:
+    container_name: mysql-database-sinka-test
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: sinka_test_db
+      MYSQL_ROOT_PASSWORD: docker
+      TZ: America/Sao_Paulo
+    volumes:
+      - ./data/mysql:/var/lib/mysql # ALTERA O VOLUME PARA ALGUMA PASTA ESPECIFICA, OU A PADRÂO .
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf # Adiciona o arquivo de configuração customizado
+    # - /dump/sinka.sql:/docker-entrypoint-initdb.d/dump.sql
+    ports:
+      - '3308:3306'
+    expose:
+      - '3306'
