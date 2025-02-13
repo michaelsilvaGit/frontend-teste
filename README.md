@@ -10,7 +10,7 @@ A aplicação deve ser desenvolvida utilizando as seguintes tecnologias:
 
 - React **(com uso de hooks e componentes funcionais)**
 - Next.js
-- TailwindCSS
+- Tailwind CSS
 - Git
 
 ## Funcionalidades
@@ -37,16 +37,16 @@ A aplicação deve ser desenvolvida utilizando as seguintes tecnologias:
 
 ## Entrega
 
-Subir o código em um repositório do GitHub com as instruções para execução do projeto e nos enviar o link.
+Subir o código em um repositório público do GitHub com as instruções para execução do projeto e nos enviar o link.
 
 ## Como rodar o backend
 
-1. Ir até a pasta `backend`.
-2. Instalar os módulos com `npm install`.
-3. Copiar o arquivo `.env.example` para `.env`.
-4. Inicializar o Docker: `docker compose up -d`.
-5. Rodar migrations: `npx prisma migrate deploy`.
-6. Iniciar backend: `npm start`.
+1. Ir até a pasta `backend`
+2. Instalar os módulos com `npm install`
+3. Copiar o arquivo `.env.example` para `.env`
+4. Inicializar o Docker: `docker compose up -d`
+5. Rodar migrations: `npx prisma migrate deploy`
+6. Iniciar backend: `npm start`
 
 **Endpoints backend:**
 
