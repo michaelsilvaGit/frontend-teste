@@ -39,5 +39,5 @@ export const swaggerConfig = async function conf(
     };
 
     const document = SwaggerModule.createDocument(app, config, options);
-    SwaggerModule.setup('message_engine/swagger', app, document);
+    SwaggerModule.setup('/swagger', app, document);
 };
