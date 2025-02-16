@@ -4,44 +4,28 @@ import { useState, useEffect } from "react";
 import EditClientForm from "./components/clientForm";
 import { useParams } from 'next/navigation';
 import { findClientById, updateClient } from "@/app/services/api/clienteService";
+import { Client } from "@/app/types/clients";
+import { IFormInput } from "@/app/types/formInput";
 
 
-interface Client {
-  id: number,
-  avatar: string,
-  username: string,
-  email: string,
-  password: string,
-  active: boolean,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string
-}
 
 
-interface IFormInput {
-  username: string;
-  email: string;
-  active: string;
-  avatar: string;
-  password: string;
-}
 
 
 
 export default function EditClient() {
 
-  const params = useParams();
-  const [client, setClient] = useState<Client>();   
+  const params = useParams<{ id: string }>  ();
+  const [client, setClient] = useState<Client | undefined>(undefined);
   const [loading, setLoading] = useState(true);
 
-
+  
 
   useEffect(() => {
 
     async function fetchClientes() {
       try {
-        const data = await findClientById(Number(params.id));
+        const data: Client = await findClientById(Number(params.id));
         setClient(data);
       } catch (error) {
         console.error('Erro ao carregar clientes:', error);

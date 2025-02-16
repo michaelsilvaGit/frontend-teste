@@ -8,18 +8,10 @@ import { getClients } from '../services/api/clienteService';
 import { formatDate } from '../utils/formatDate';
 import { deleteClient } from '../services/api/clienteService';
 import Link from 'next/link';
+import { Client } from '../types/clients';
 
-interface Client {
-    id: number,
-    avatar: string,
-    username: string,
-    email: string,
-    password: string,
-    active: true,
-    createdAt: string,
-    updatedAt: string,
-    deletedAt: string
-}
+
+
 
 
 
@@ -29,8 +21,8 @@ export default function Clients() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [clientIdToDelete, setClientIdToDelete] = useState<number | null>(null);
     const [clients, setClients] = useState<Client[]>([]);
-    const [loading, setLoading] = useState(true);
     const [confirmDelete, setConfirmDelete] = useState(false)
+
 
     useEffect(() => {
 
@@ -40,9 +32,7 @@ export default function Clients() {
                 setClients(data);
             } catch (error) {
                 console.error('Erro ao carregar clientes:', error);
-            } finally {
-                setLoading(false);
-            }
+            } 
         }
 
         fetchClientes();
@@ -50,7 +40,7 @@ export default function Clients() {
     }, [confirmDelete]);
 
 
-    async function handleDelete(id: number) {
+    async function handleDelete(id: number) : Promise<void>{
         const resDelete = await deleteClient(id);
 
         if (resDelete) {

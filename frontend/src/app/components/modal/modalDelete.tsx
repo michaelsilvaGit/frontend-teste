@@ -2,14 +2,10 @@
 
 import React, { } from 'react';
 import { useModal } from 'react-modal-hook';
+import { ModalDeleteProps } from '@/app/types/modalDelete';
 
 
 
-interface ModalDeleteProps {
-    isModalOpen: boolean;
-    onCancel: () => void;
-    handleDelete: () => void;
-}
 
 
 

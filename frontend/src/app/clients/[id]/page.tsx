@@ -1,38 +1,32 @@
 'use client'
 
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { useState, useEffect } from 'react';
 import { findClientById } from '@/app/services/api/clienteService';
 import { useParams } from 'next/navigation';
 import { formatDate } from '@/app/utils/formatDate';
 import ImageDefault from '../../assets/images/withoutAvatar.webp'
+import { Client } from '@/app/types/clients';
 
-interface Client {
-    id: number,
-    avatar: string,
-    username: string,
-    email: string,
-    password: string,
-    active: true,
-    createdAt: string,
-    updatedAt: string,
-    deletedAt: string
-}
+
+
+
+
 
 
 export default function DetailClient() {
 
-    const params = useParams();
-    const [client, setClient] = useState<Client>();   
+    const params = useParams<{ id: string }>();
+    const [client, setClient] = useState<Client | undefined>(undefined);   
     const [loading, setLoading] = useState(true);
-    const [imgSrc, setImgSrc] = useState(ImageDefault);
+
 
 
     useEffect(() => {
 
         async function fetchClientes() {
             try {
-                const data = await findClientById(Number(params.id));
+                const data: Client = await findClientById(Number(params.id));
                 setClient(data);
 
             } catch (error) {
@@ -48,18 +42,14 @@ export default function DetailClient() {
 
     function isValidUrl(url: string): boolean {
         try {
-          new URL(url); // Tenta construir uma URL válida
+          new URL(url); 
           return true;
         } catch (error) {
-          return false; // Retorna false se a URL for inválida
+          return false;
         }
       }
 
-    const validSrc = isValidUrl(client?.avatar || '') ? client?.avatar || '' : ImageDefault;
-
-    function handleImageError() : void {
-        setImgSrc(ImageDefault);
-    };
+    const validSrc : string | StaticImageData = isValidUrl(client?.avatar || '') ? client?.avatar || '' : ImageDefault;
 
 
 
@@ -75,7 +65,6 @@ export default function DetailClient() {
                         width={100}
                         height={100}
                         className="rounded-md"
-                        onError={handleImageError}
                     />
                 </div>
                 <div className="flex">

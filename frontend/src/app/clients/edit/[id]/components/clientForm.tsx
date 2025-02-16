@@ -2,38 +2,14 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { useState, useEffect } from 'react';
 import ImageDefault from '../../../../assets/images/withoutAvatar.webp'
+import { IFormInput, EditClientFormProps } from '@/app/types/formInput';
 
 
 
 
-interface Client {
-    id: number,
-    avatar: string,
-    username: string,
-    email: string,
-    password: string,
-    active: boolean,
-    createdAt: string,
-    updatedAt: string,
-    deletedAt: string
-}
-
-interface EditClientFormProps {
-    onSubmit: (data: IFormInput) => void;
-    client?: Client;
-}
-
-interface IFormInput {
-    username: string;
-    email: string;
-    active: string;
-    avatar: string;
-    password: string;
-    confirmPassword?: string;
-}
 
 
 
@@ -43,7 +19,6 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue, unregister } = useForm<IFormInput>();
     const [showPasswordFields, setShowPasswordFields] = useState(false);
-    const [imgSrc, setImgSrc] = useState(ImageDefault);
 
 
 
@@ -57,8 +32,7 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
         }
     }, [client, setValue]);
 
-
-    function handlePasswordCheckboxChange() : void {
+    function handlePasswordCheckboxChange(): void {
         if (showPasswordFields) {
             unregister('password');
             unregister('confirmPassword');
@@ -66,10 +40,9 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
         setShowPasswordFields(!showPasswordFields);
     };
 
-
-    function handleOnSubmit() : void{
+    function handleOnSubmit(): void {
         unregister('confirmPassword');
-        const formData = getValues();
+        const formData: IFormInput = getValues();
         onSubmit(formData);
     }
 
@@ -78,20 +51,16 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
         return regex.test(value) ? true : 'URL deve ser de uma imagem válida';
     };
 
-    function handleImageError() : void{
-        setImgSrc(ImageDefault);
-    };
-
     function isValidUrl(url: string): boolean {
         try {
-          new URL(url); // Tenta construir uma URL válida
-          return true;
+            new URL(url);
+            return true;
         } catch (error) {
-          return false; // Retorna false se a URL for inválida
+            return false;
         }
-      }
+    }
 
-    const validSrc = isValidUrl(client?.avatar || '') ? client?.avatar || '' : ImageDefault;
+    const validSrc : string | StaticImageData = isValidUrl(client?.avatar || '') ? client?.avatar || '' : ImageDefault;
 
 
 
@@ -165,7 +134,7 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
                                 onChange={() => handlePasswordCheckboxChange()}
                                 className="mr-2"
                             />
-                            Deseja alterar a senha?
+                            Alterar a senha
                         </label>
                     </div>
                 )}
@@ -224,7 +193,6 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
                                 width={100}
                                 height={100}
                                 className="rounded-md"
-                                onError={handleImageError}
                             />
                         </div>
                     )}

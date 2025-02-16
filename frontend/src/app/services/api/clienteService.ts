@@ -1,32 +1,14 @@
+import { Client } from "@/app/types/clients";
+import { IFormInput, IFormInputSend } from "@/app/types/formInput";
+
 
 const API_URL = 'http://localhost:3333';
 
 
-interface Client {
-
-  id: number,
-  avatar: string,
-  username: string,
-  email: string,
-  password: string,
-  active: true,
-  createdAt: string,
-  updatedAt: string,
-  deletedAt: string
-}
 
 
-interface IFormInput {
-  username: string;
-  email: string;
-  active: boolean;
-  avatar: string;
-  password: string;
-}
 
-
-export async function getClients() {
-
+export async function getClients() : Promise<Client[]>{
 
   try {
     const response = await fetch(`${API_URL}/client`);
@@ -48,7 +30,7 @@ export async function getClients() {
 }
 
 
-export async function newClient(dataClient :IFormInput) {
+export async function newClient(dataClient : IFormInputSend) : Promise<Client>{
 
   console.log('Envio cadastro Cliente: ', dataClient)
 
@@ -65,7 +47,7 @@ export async function newClient(dataClient :IFormInput) {
       throw new Error('Erro ao cadastrar cliente');
     }
 
-    const data: Client[] = await response.json();
+    const data: Client = await response.json();
 
     console.log('Retorno cadastro: ', data)
 
@@ -80,7 +62,7 @@ export async function newClient(dataClient :IFormInput) {
 
 
 
-export async function findClientById(id: number) {
+export async function findClientById(id: number) : Promise<Client>{
 
 
   try {
@@ -103,23 +85,17 @@ export async function findClientById(id: number) {
 }
 
 
-export async function updateClient(id: number, clientData: Partial<IFormInput>) {
+export async function updateClient(id: number, clientData : Partial<IFormInputSend>) {
 
   console.log('DADOS PARA ENVIO: ', clientData)
 
   try {
     const response = await fetch(`${API_URL}/client/${id}`, {
-      method: 'UPDATE',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        "username": "john_doe",
-        "email": "john@example.com",
-        "active": true,
-        "avatar": "avatar_url",
-        "password": "12345"
-      }),
+      body: JSON.stringify(clientData),
     });
 
     if (!response.ok) {
@@ -139,7 +115,7 @@ export async function updateClient(id: number, clientData: Partial<IFormInput>) 
 }
 
 
-export async function deleteClient(id: number) {
+export async function deleteClient(id: number) : Promise<boolean>{
 
   try {
     const response = await fetch(`${API_URL}/client/${id}`, {

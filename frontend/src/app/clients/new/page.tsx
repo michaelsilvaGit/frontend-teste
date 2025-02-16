@@ -3,15 +3,12 @@
 import EditClientForm from "../edit/[id]/components/clientForm";
 import { useRouter } from 'next/navigation';
 import { newClient } from "@/app/services/api/clienteService";
+import { IFormInput } from "@/app/types/formInput";
 
 
-interface IFormInput {
-    username: string;
-    email: string;
-    active: string;
-    avatar: string;
-    password: string;
-}
+
+
+
 
 
 
@@ -19,15 +16,22 @@ export default function NewClient() {
 
     const router = useRouter();
 
-    function onSubmit(data: IFormInput) : void {
+    async function onSubmit(data: IFormInput) : Promise<void>{
 
-        const updatedData = {
-            ...data,
-            active: data.active === 'true',
-        };
+        try {
+            const updatedData = {
+                ...data,
+                active: data.active === 'true', 
+            };
+    
+            await newClient(updatedData); 
+            
+            router.push(`/clients`); 
+            
+        } catch (error) {
+            console.error('Erro ao criar cliente:', error);
 
-        newClient(updatedData);
-        router.push(`/clients`);
+        }
 
     }
 
