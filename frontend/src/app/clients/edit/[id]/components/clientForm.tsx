@@ -19,6 +19,7 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
 
     const { register, handleSubmit, formState: { errors }, getValues, setValue, unregister } = useForm<IFormInput>();
     const [showPasswordFields, setShowPasswordFields] = useState(false);
+    const [imageValidate, setImageValidate] = useState<string | StaticImageData>(ImageDefault);
 
 
 
@@ -28,7 +29,12 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
             setValue('email', client.email);
             setValue('avatar', client.avatar);
             setValue('active', client.active ? "true" : "false");
-
+        }
+        const avatarUrl = client?.avatar || '';
+        if (isValidUrl(avatarUrl)) {
+            setImageValidate(avatarUrl);
+        } else {
+            setImageValidate(ImageDefault);
         }
     }, [client, setValue]);
 
@@ -42,6 +48,9 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
 
     function handleOnSubmit(): void {
         unregister('confirmPassword');
+        if(!showPasswordFields && client){
+            unregister('password');
+        }
         const formData: IFormInput = getValues();
         onSubmit(formData);
     }
@@ -60,7 +69,9 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
         }
     }
 
-    const validSrc : string | StaticImageData = isValidUrl(client?.avatar || '') ? client?.avatar || '' : ImageDefault;
+    const handleImageError = () => {
+        setImageValidate(ImageDefault);
+    };
 
 
 
@@ -188,11 +199,12 @@ export default function EditClientForm({ client, onSubmit }: EditClientFormProps
                     {client && (
                         <div className='mt-1'>
                             <Image
-                                src={validSrc || ImageDefault}
+                                src={imageValidate}
                                 alt={'avatar'}
                                 width={100}
                                 height={100}
                                 className="rounded-md"
+                                onError={handleImageError}
                             />
                         </div>
                     )}
