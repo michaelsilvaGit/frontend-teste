@@ -18,11 +18,11 @@ interface clientProps {
 export default async function Home() {
 
 
-  const response = await fetch('http://localhost:3333/client');
-  const data: any = await response.json();
+  // const response = await fetch('http://localhost:3333/client');
+  // const data: any = await response.json();
 
 
-  console.log('RECEBENDO DADOS: ', data)
+  // console.log('RECEBENDO DADOS: ', data)
 
 
 

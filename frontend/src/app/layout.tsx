@@ -1,6 +1,7 @@
-
+'use client'
+import { Header } from "./components/header";
 import "./globals.css";
-
+import { ModalProvider } from "react-modal-hook";
 
 export default function RootLayout({
   children,
@@ -11,7 +12,10 @@ export default function RootLayout({
     <html lang="en">
       <body
       >
-        {children}
+         <ModalProvider>
+          <Header />
+            {children}
+         </ModalProvider>
       </body>
     </html>
   );
