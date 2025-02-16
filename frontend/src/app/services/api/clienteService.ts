@@ -87,6 +87,7 @@ export async function findClientById(id: number) : Promise<Client>{
 
 export async function updateClient(id: number, clientData : Partial<IFormInputSend>) {
 
+  console.log('ID: ', id)
   console.log('DADOS PARA ENVIO: ', clientData)
 
   try {

@@ -32,7 +32,7 @@ Siga os passos abaixo para rodar o projeto localmente:
 
 1. **Clone o repositório:**
    
-   git clone https://github.com/michaelsilvaGit/frontend-teste.git
+   - git clone https://github.com/michaelsilvaGit/frontend-teste.git
 
 2. **Acesse a pasta do projeto e mude para a branch develop:**
 
