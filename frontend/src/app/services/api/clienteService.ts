@@ -18,8 +18,6 @@ export async function getClients() : Promise<Client[]>{
     }
 
     const data: Client[] = await response.json();
-
-    console.log('CHMANDO: ', data)
     return data;
 
   } catch (error) {
@@ -31,8 +29,6 @@ export async function getClients() : Promise<Client[]>{
 
 
 export async function newClient(dataClient : IFormInputSend) : Promise<Client>{
-
-  console.log('Envio cadastro Cliente: ', dataClient)
 
   try {
     const response = await fetch(`${API_URL}/client`, {
@@ -48,8 +44,6 @@ export async function newClient(dataClient : IFormInputSend) : Promise<Client>{
     }
 
     const data: Client = await response.json();
-
-    console.log('Retorno cadastro: ', data)
 
     return data;
 
@@ -74,7 +68,6 @@ export async function findClientById(id: number) : Promise<Client>{
 
     const data: Client = await response.json();
 
-    console.log('BUSCA CLIENTE POR ID: ', data)
     return data;
 
   } catch (error) {
@@ -85,9 +78,7 @@ export async function findClientById(id: number) : Promise<Client>{
 }
 
 
-export async function updateClient(id: number, clientData : Partial<IFormInputSend>) {
-
-  console.log('DADOS PARA ENVIO: ', clientData)
+export async function updateClient(id: number, clientData : Partial<IFormInputSend>) : Promise<Client>{
 
   try {
     const response = await fetch(`${API_URL}/client/${id}`, {
@@ -103,8 +94,6 @@ export async function updateClient(id: number, clientData : Partial<IFormInputSe
     }
 
     const data: Client = await response.json();
-
-    console.log('CLIENTE ATUALIZADO: ', data);
     return data;
 
   } catch (error) {

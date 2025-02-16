@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 import { findClientById, updateClient } from "@/app/services/api/clienteService";
 import { Client } from "@/app/types/clients";
 import { IFormInput } from "@/app/types/formInput";
-
+import { useRouter } from 'next/navigation';
 
 
 
@@ -18,7 +18,7 @@ export default function EditClient() {
   const params = useParams<{ id: string }>  ();
   const [client, setClient] = useState<Client | undefined>(undefined);
   const [loading, setLoading] = useState(true);
-
+  const router = useRouter();
   
 
   useEffect(() => {
@@ -39,14 +39,18 @@ export default function EditClient() {
   }, []);
 
 
-  function onSubmit(data: IFormInput) : void{
+  async function onSubmit(data: IFormInput) : Promise<void>{
 
     const updatedData = {
       ...data,
       active: data.active === 'true',
     };
 
-    updateClient(Number(params.id), updatedData);
+    const clientUpdate : Client = await updateClient(Number(params.id), updatedData);
+
+    if(clientUpdate){
+      router.push(`/clients`);
+    }
 
   }
 

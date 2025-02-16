@@ -4,6 +4,7 @@ import EditClientForm from "../edit/[id]/components/clientForm";
 import { useRouter } from 'next/navigation';
 import { newClient } from "@/app/services/api/clienteService";
 import { IFormInput } from "@/app/types/formInput";
+import { Client } from "@/app/types/clients";
 
 
 
@@ -24,9 +25,11 @@ export default function NewClient() {
                 active: data.active === 'true', 
             };
     
-            await newClient(updatedData); 
+            const returnNewClient : Client = await newClient(updatedData); 
             
-            router.push(`/clients`); 
+            if(returnNewClient){
+                router.push(`/clients`);
+            }
             
         } catch (error) {
             console.error('Erro ao criar cliente:', error);
