@@ -39,7 +39,7 @@ Siga os passos abaixo para rodar o projeto localmente:
    - cd frontend-teste
    - git checkout develop
 
-4. **Acesse a pasta frontend e Instale as dependecia:**
+4. **Acesse a pasta frontend e Instale as dependências:**
     
    - cd frontend
    - npm install
