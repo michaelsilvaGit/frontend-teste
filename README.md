@@ -20,34 +20,34 @@ Este projeto é um teste de frontend desenvolvido utilizando **React** e **Next.
 
 ## Como Usar
 
-- Listar Clientes: Na página inicial, você verá uma tabela com todos os clientes cadastrados.
-- Criar Cliente: No header clique no botão "Novo Cliente" ou no aviso na tela para abrir o formulário de criação de um novo cliente. Preencha os campos obrigatórios e salve.
-- Visualizar Cliente: Na tabela ao passar o mouse em cima da lista dos clientes, selecione e será redirecioando a pagina de visualização.
-- Editar Cliente: Clique no ícone de edição de um cliente na tabela para modificar os dados. Salve as alterações após editar.
-- Deletar Cliente: Clique no ícone de exclusão nada tabela ao lado de um cliente para removê-lo da lista confirme a ação no modal que irá aparecer.
+- **Listar Clientes:** Na página inicial, você verá uma tabela com todos os clientes cadastrados.
+- **Criar Cliente:** No header clique no botão "Novo Cliente" ou no aviso na tela para abrir o formulário de criação de um novo cliente. Preencha os campos obrigatórios e salve.
+- **Visualizar Cliente:** Na tabela ao passar o mouse em cima da lista dos clientes, selecione e será redirecionado a pagina de visualização.
+- **Editar Cliente:** Clique no ícone de edição de um cliente na tabela para modificar os dados. Na tela de edição salve as alterações após editar.
+- **Deletar Cliente:** Clique no ícone de exclusão nada tabela ao lado de um cliente para removê-lo da lista confirme a ação no modal que irá aparecer.
 
 ## Instalação
 
 Siga os passos abaixo para rodar o projeto localmente:
 
-1. Clone o repositório:
+1. **Clone o repositório:**
    
    git clone https://github.com/michaelsilvaGit/frontend-teste.git
 
-2. Acesse a pasta do projeto e mude para a branch develop:
+2. **Acesse a pasta do projeto e mude para a branch develop:**
 
-   cd frontend-teste
-   git checkout develop
+   - cd frontend-teste
+   - git checkout develop
 
-4. Acesse a pasta frontend e Instale as dependecia:
+4. **Acesse a pasta frontend e Instale as dependecia:**
     
-   cd frontend
-   npm install
+   - cd frontend
+   - npm install
 
-5. Iniciar aplicação:
+5. **Iniciar aplicação:**
    
-   npm run dev
-   Abra o navegador e acesse http://localhost:3000 ou a url vista no terminal.
+   - npm run dev
+   - Abra o navegador e acesse http://localhost:3000 ou a url vista no terminal.
 
 ## Iniciar o Backend
 
